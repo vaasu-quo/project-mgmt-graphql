@@ -4,8 +4,13 @@ import AddClientModal from "../components/AddClientModal";
 import AddProjectModal from "../components/AddProjectModal";
 import { Suspense } from "react";
 import ProjectsSkeleton from "components/ProjectsSkeleton";
+import ClientsSkeleton from "components/ClientsSkeleton";
 
 export default function Home() {
+  const suspendComponent = setTimeout(() => {
+    return <>Done</>;
+  }, 5000);
+
   return (
     <>
       <div className="d-flex gap-3 mb-4">
@@ -16,7 +21,9 @@ export default function Home() {
         <Projects />
       </Suspense>
       <hr />
-      <Clients />
+      <Suspense fallback={<ClientsSkeleton />}>
+        <Clients />
+      </Suspense>
     </>
   );
 }

@@ -3,7 +3,7 @@
 ## Queries
 
 getClients
-getProjects
+getProjects ✅
 getClient
 getProject
 
