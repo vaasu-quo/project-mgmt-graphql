@@ -1,22 +1,21 @@
+import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { FaList } from "react-icons/fa";
-import { useMutation, useQuery } from "@apollo/client";
+import { useLazyLoadQuery } from "react-relay";
+import { graphql } from "relay-runtime";
 import { ADD_PROJECT } from "../mutations/projectMutations";
 import { GET_PROJECTS } from "../queries/projectQueries";
-import { GET_CLIENTS } from "../queries/clientQueries";
-import { graphql } from "relay-runtime";
-import { useLazyLoadQuery } from "react-relay";
 
-const GetClientsQuery = graphql`
-  query ClientsQuery {
-    clients {
-      id
-      name
-      email
-      phone
-    }
-  }
-`;
+// const GetClientsQuery = graphql`
+//   query ClientsQuery {
+//     clients {
+//       id
+//       name
+//       email
+//       phone
+//     }
+//   }
+// `;
 
 export default function AddProjectModal() {
   const [name, setName] = useState("");
@@ -36,11 +35,11 @@ export default function AddProjectModal() {
   });
 
   // Get Clients for select
-  const data = useLazyLoadQuery(
-    GetClientsQuery,
-    {},
-    { fetchPolicy: "store-or-network" }
-  );
+  // const data = useLazyLoadQuery(
+  //   GetClientsQuery,
+  //   {},
+  //   { fetchPolicy: "store-or-network" }
+  // );
 
   const onSubmit = (e) => {
     e.preventDefault();

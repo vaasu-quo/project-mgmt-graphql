@@ -2,10 +2,9 @@
 
 ## Queries
 
-getClients
+getClients ✅
 getProjects ✅
-getClient
-getProject
+getProject ✅
 
 ## Mutations
 

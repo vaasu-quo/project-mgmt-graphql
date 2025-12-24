@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
@@ -13,6 +13,7 @@ import {
   Observable,
 } from "relay-runtime";
 import { RelayEnvironmentProvider } from "react-relay";
+import ProjectSkeleton from "components/ProjectSkeleton";
 
 // Relay
 /**
@@ -83,7 +84,14 @@ function App(): React.ReactElement {
             <div className="container">
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/projects/:id" element={<Project />} />
+                <Route
+                  path="/projects/:id"
+                  element={
+                    <Suspense fallback={<ProjectSkeleton />}>
+                      <Project />
+                    </Suspense>
+                  }
+                />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </div>

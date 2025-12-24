@@ -1,23 +1,26 @@
-import { graphql, useLazyLoadQuery } from "react-relay";
-import { ClientsQuery } from "./__generated__/ClientsQuery.graphql";
+import { graphql, useFragment, useLazyLoadQuery } from "react-relay";
+import {
+  ClientsFragment$data,
+  ClientsFragment$key,
+} from "./__generated__/ClientsFragment.graphql";
+
 import ClientRow from "./ClientRow";
 
-const GetClientsQuery = graphql`
-  query ClientsQuery {
-    clients {
-      id
-      name
-      email
-      phone
-    }
-  }
-`;
+interface ClientsProps {
+  clientsRef: ClientsFragment$key;
+}
 
-export default function Clients() {
-  const data = useLazyLoadQuery<ClientsQuery>(
-    GetClientsQuery,
-    {},
-    { fetchPolicy: "store-or-network" }
+export default function Clients({ clientsRef }: ClientsProps) {
+  const data = useFragment(
+    graphql`
+      fragment ClientsFragment on RootQueryType {
+        clients {
+          id
+          ...ClientRowFragment
+        }
+      }
+    `,
+    clientsRef
   );
 
   const clients = data?.clients || [];
@@ -35,7 +38,8 @@ export default function Clients() {
         </thead>
         <tbody>
           {clients.map(
-            (client) => client && <ClientRow key={client.id} client={client} />
+            (client) =>
+              client && <ClientRow key={client.id} clientRef={client} />
           )}
         </tbody>
       </table>
