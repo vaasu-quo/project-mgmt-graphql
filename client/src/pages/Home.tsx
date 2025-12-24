@@ -7,10 +7,6 @@ import ProjectsSkeleton from "components/ProjectsSkeleton";
 import ClientsSkeleton from "components/ClientsSkeleton";
 
 export default function Home() {
-  const suspendComponent = setTimeout(() => {
-    return <>Done</>;
-  }, 5000);
-
   return (
     <>
       <div className="d-flex gap-3 mb-4">

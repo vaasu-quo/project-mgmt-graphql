@@ -17,7 +17,7 @@ export default function Clients() {
   const data = useLazyLoadQuery<ClientsQuery>(
     GetClientsQuery,
     {},
-    { fetchPolicy: "store-and-network" }
+    { fetchPolicy: "store-or-network" }
   );
 
   const clients = data?.clients || [];
