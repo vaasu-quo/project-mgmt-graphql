@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<077ee98be1582af4911eeff13ab129b2>>
+ * @generated SignedSource<<7e2ea01e51570f9e6f21407421521581>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,7 +15,7 @@ export type ProjectsQuery$data = {
     readonly id: string | null | undefined;
     readonly name: string | null | undefined;
     readonly status: string | null | undefined;
-  } | null | undefined> | null | undefined;
+  }>;
 };
 export type ProjectsQuery = {
   response: ProjectsQuery$data;

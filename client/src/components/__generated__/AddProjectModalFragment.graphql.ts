@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<eb7d4ed87e3f9da8a01a0862b4bbc70c>>
+ * @generated SignedSource<<5c9d156304712210f83b55328d7cf735>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,7 +13,8 @@ import { FragmentRefs } from "relay-runtime";
 export type AddProjectModalFragment$data = {
   readonly clients: ReadonlyArray<{
     readonly id: string | null | undefined;
-  } | null | undefined> | null | undefined;
+    readonly name: string | null | undefined;
+  }>;
   readonly " $fragmentType": "AddProjectModalFragment";
 };
 export type AddProjectModalFragment$key = {
@@ -41,6 +42,13 @@ const node: ReaderFragment = {
           "kind": "ScalarField",
           "name": "id",
           "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "name",
+          "storageKey": null
         }
       ],
       "storageKey": null
@@ -50,6 +58,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "57e6f649aafa64e44f6978aa14f6f60e";
+(node as any).hash = "dc33035788069c9360e156f030bf8e28";
 
 export default node;

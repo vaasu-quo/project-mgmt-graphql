@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<50550229a2507e4b6898b60978e755fa>>
+ * @generated SignedSource<<13890fd3db11c27a4ca407e23e0bef4d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,7 +14,7 @@ export type ClientsFragment$data = {
   readonly clients: ReadonlyArray<{
     readonly id: string | null | undefined;
     readonly " $fragmentSpreads": FragmentRefs<"ClientRowFragment">;
-  } | null | undefined> | null | undefined;
+  }>;
   readonly " $fragmentType": "ClientsFragment";
 };
 export type ClientsFragment$key = {

@@ -5,10 +5,10 @@ import { useFragment, useLazyLoadQuery } from "react-relay";
 import { graphql } from "relay-runtime";
 import { ADD_PROJECT } from "../mutations/projectMutations";
 import { GET_PROJECTS } from "../queries/projectQueries";
-import { AddProjectModalQuery } from "./__generated__/AddProjectModalQuery.graphql";
+import { AddProjectModalFragment$key } from "./__generated__/AddProjectModalFragment.graphql";
 
 interface AddProjectModalProps {
-  clientsRef: AddProjectModalQuery;
+  clientsRef: AddProjectModalFragment$key;
 }
 
 export default function AddProjectModal({ clientsRef }: AddProjectModalProps) {
@@ -34,11 +34,14 @@ export default function AddProjectModal({ clientsRef }: AddProjectModalProps) {
       fragment AddProjectModalFragment on RootQueryType {
         clients {
           id
+          name
         }
       }
     `,
     clientsRef
   );
+
+  const clients = data?.clients;
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -133,7 +136,7 @@ export default function AddProjectModal({ clientsRef }: AddProjectModalProps) {
                       onChange={(e) => setClientId(e.target.value)}
                     >
                       <option value="">Select Client</option>
-                      {data.clients.map((client) => (
+                      {clients?.map((client) => (
                         <option key={client.id} value={client.id}>
                           {client.name}
                         </option>

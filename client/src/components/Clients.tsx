@@ -20,7 +20,7 @@ export default function Clients({ clientsRef }: ClientsProps) {
     clientsRef
   );
 
-  const clients = data?.clients || [];
+  const clients = data.clients || [];
 
   return (
     <>

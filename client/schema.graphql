@@ -3,13 +3,9 @@ schema {
   mutation: Mutation
 }
 
-"""
-Exposes a URL that specifies the behaviour of this scalar.
-"""
+"""Exposes a URL that specifies the behaviour of this scalar."""
 directive @specifiedBy(
-  """
-  The URL that specifies the behaviour of this scalar.
-  """
+  """The URL that specifies the behaviour of this scalar."""
   url: String!
 ) on SCALAR
 
@@ -23,19 +19,9 @@ type Client {
 type Mutation {
   addClient(name: String!, email: String!, phone: String!): Client
   deleteClient(id: ID!): Client
-  addProject(
-    name: String!
-    description: String!
-    status: ProjectStatus = new
-    clientId: ID!
-  ): Project
+  addProject(name: String!, description: String!, status: ProjectStatus = new, clientId: ID!): Project
   deleteProject(id: ID!): Project
-  updateProject(
-    id: ID!
-    name: String
-    description: String
-    status: ProjectStatusUpdate
-  ): Project
+  updateProject(id: ID!, name: String, description: String, status: ProjectStatusUpdate): Project
 }
 
 type Project {
@@ -59,8 +45,9 @@ enum ProjectStatusUpdate {
 }
 
 type RootQueryType {
-  projects: [Project]
+  projects: [Project!]!
   project(id: ID): Project
-  clients: [Client]
+  clients: [Client!]!
   client(id: ID): Client
 }
+

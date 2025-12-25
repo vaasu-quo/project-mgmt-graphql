@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<30eba632b8ffb9ad560f5842ed9d7440>>
+ * @generated SignedSource<<0bbbaf4781f3af9e7ac01f86b46a3a0e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -88,12 +88,12 @@ const node: ConcreteRequest = {
     ]
   },
   "params": {
-    "cacheID": "645a1e40f7da2b6882e6ac41cc541839",
+    "cacheID": "b1a3b63918005b7590fe161b1372a7a9",
     "id": null,
     "metadata": {},
     "name": "HomeQuery",
     "operationKind": "query",
-    "text": "query HomeQuery {\n  ...ClientsFragment\n  ...AddProjectModalFragment\n}\n\nfragment AddProjectModalFragment on RootQueryType {\n  clients {\n    id\n  }\n}\n\nfragment ClientRowFragment on Client {\n  name\n  email\n  phone\n}\n\nfragment ClientsFragment on RootQueryType {\n  clients {\n    id\n    ...ClientRowFragment\n  }\n}\n"
+    "text": "query HomeQuery {\n  ...ClientsFragment\n  ...AddProjectModalFragment\n}\n\nfragment AddProjectModalFragment on RootQueryType {\n  clients {\n    id\n    name\n  }\n}\n\nfragment ClientRowFragment on Client {\n  name\n  email\n  phone\n}\n\nfragment ClientsFragment on RootQueryType {\n  clients {\n    id\n    ...ClientRowFragment\n  }\n}\n"
   }
 };
 
