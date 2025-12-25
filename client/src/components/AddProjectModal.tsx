@@ -41,8 +41,6 @@ export default function AddProjectModal({ clientsRef }: AddProjectModalProps) {
     clientsRef
   );
 
-  const clients = data?.clients;
-
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -136,8 +134,8 @@ export default function AddProjectModal({ clientsRef }: AddProjectModalProps) {
                       onChange={(e) => setClientId(e.target.value)}
                     >
                       <option value="">Select Client</option>
-                      {clients?.map((client) => (
-                        <option key={client.id} value={client.id}>
+                      {data.clients.map((client) => (
+                        <option key={client.id} value={client.id!}>
                           {client.name}
                         </option>
                       ))}
