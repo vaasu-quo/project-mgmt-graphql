@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a62a128691894b4d72b550f0a68f3e7e>>
+ * @generated SignedSource<<30eba632b8ffb9ad560f5842ed9d7440>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,7 +12,7 @@ import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type HomeQuery$variables = Record<PropertyKey, never>;
 export type HomeQuery$data = {
-  readonly " $fragmentSpreads": FragmentRefs<"ClientsFragment">;
+  readonly " $fragmentSpreads": FragmentRefs<"AddProjectModalFragment" | "ClientsFragment">;
 };
 export type HomeQuery = {
   response: HomeQuery$data;
@@ -30,6 +30,11 @@ const node: ConcreteRequest = {
         "args": null,
         "kind": "FragmentSpread",
         "name": "ClientsFragment"
+      },
+      {
+        "args": null,
+        "kind": "FragmentSpread",
+        "name": "AddProjectModalFragment"
       }
     ],
     "type": "RootQueryType",
@@ -83,15 +88,15 @@ const node: ConcreteRequest = {
     ]
   },
   "params": {
-    "cacheID": "5ebcb7c3654e16aeebc9de0cdd6cbd85",
+    "cacheID": "645a1e40f7da2b6882e6ac41cc541839",
     "id": null,
     "metadata": {},
     "name": "HomeQuery",
     "operationKind": "query",
-    "text": "query HomeQuery {\n  ...ClientsFragment\n}\n\nfragment ClientRowFragment on Client {\n  name\n  email\n  phone\n}\n\nfragment ClientsFragment on RootQueryType {\n  clients {\n    id\n    ...ClientRowFragment\n  }\n}\n"
+    "text": "query HomeQuery {\n  ...ClientsFragment\n  ...AddProjectModalFragment\n}\n\nfragment AddProjectModalFragment on RootQueryType {\n  clients {\n    id\n  }\n}\n\nfragment ClientRowFragment on Client {\n  name\n  email\n  phone\n}\n\nfragment ClientsFragment on RootQueryType {\n  clients {\n    id\n    ...ClientRowFragment\n  }\n}\n"
   }
 };
 
-(node as any).hash = "87a1b76720360dae54f10038a978aa74";
+(node as any).hash = "eb008cde07d1dfb12b0c11663b4f26cf";
 
 export default node;

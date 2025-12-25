@@ -20,8 +20,6 @@ export default function Projects(): React.ReactElement {
     { fetchPolicy: "store-or-network" }
   );
 
-  console.log(data);
-
   return (
     <>
       {data.projects && data.projects.length > 0 ? (

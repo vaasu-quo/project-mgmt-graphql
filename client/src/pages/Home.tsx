@@ -7,16 +7,17 @@ import ProjectsSkeleton from "components/ProjectsSkeleton";
 import ClientsSkeleton from "components/ClientsSkeleton";
 import { graphql } from "relay-runtime";
 import { useLazyLoadQuery } from "react-relay";
-import { ClientsQuery } from "components/__generated__/ClientsQuery.graphql";
+import { HomeQuery } from "./__generated__/HomeQuery.graphql";
 
 const GetClientsQuery = graphql`
   query HomeQuery {
     ...ClientsFragment
+    ...AddProjectModalFragment
   }
 `;
 
 export default function Home() {
-  const data = useLazyLoadQuery<ClientsQuery>(
+  const data = useLazyLoadQuery<HomeQuery>(
     GetClientsQuery,
     {},
     { fetchPolicy: "store-or-network" }
@@ -26,7 +27,7 @@ export default function Home() {
     <>
       <div className="d-flex gap-3 mb-4">
         <AddClientModal />
-        {/* <AddProjectModal /> */}
+        <AddProjectModal clientsRef={data} />
       </div>
       <Suspense fallback={<ProjectsSkeleton />}>
         <Projects />

@@ -1,8 +1,5 @@
-import { graphql, useFragment, useLazyLoadQuery } from "react-relay";
-import {
-  ClientsFragment$data,
-  ClientsFragment$key,
-} from "./__generated__/ClientsFragment.graphql";
+import { graphql, useFragment } from "react-relay";
+import { ClientsFragment$key } from "./__generated__/ClientsFragment.graphql";
 
 import ClientRow from "./ClientRow";
 
