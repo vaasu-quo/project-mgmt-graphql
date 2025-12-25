@@ -1,6 +1,7 @@
 import { FaTrash } from "react-icons/fa";
-import { graphql, useFragment } from "react-relay";
+import { graphql, useFragment, useMutation } from "react-relay";
 import { ClientRowFragment$key } from "./__generated__/ClientRowFragment.graphql";
+import { ClientRowMutation } from "./__generated__/ClientRowMutation.graphql";
 
 interface ClientRowProps {
   clientRef: ClientRowFragment$key;
@@ -8,6 +9,7 @@ interface ClientRowProps {
 
 const ClientRowFragment = graphql`
   fragment ClientRowFragment on Client {
+    id
     name
     email
     phone
@@ -15,21 +17,36 @@ const ClientRowFragment = graphql`
 `;
 
 export default function ClientRow({ clientRef }: ClientRowProps) {
-  // const [deleteClient] = useMutation(DELETE_CLIENT, {
-  //   variables: { id: client.id },
-  //   refetchQueries: [{ query: GET_CLIENTS }, { query: GET_PROJECTS }],
-  //   // update(cache, { data: { deleteClient } }) {
-  //   //   const { clients } = cache.readQuery({ query: GET_CLIENTS });
-  //   //   cache.writeQuery({
-  //   //     query: GET_CLIENTS,
-  //   //     data: {
-  //   //       clients: clients.filter((client) => client.id !== deleteClient.id),
-  //   //     },
-  //   //   });
-  //   // },
-  // });
-
   const client = useFragment(ClientRowFragment, clientRef);
+  const [commitMutation] = useMutation<ClientRowMutation>(graphql`
+    mutation ClientRowMutation($id: ID!) {
+      deleteClient(id: $id) {
+        id
+        name
+        email
+        phone
+      }
+    }
+  `);
+
+  const onClick = () => {
+    commitMutation({
+      variables: { id: client.id! },
+      updater: (store) => {
+        const deletedClientId = client.id;
+
+        const root = store.getRoot();
+
+        const clients = root.getLinkedRecords("clients") || [];
+
+        const updatedClients = clients.filter(
+          (clientRecord) => clientRecord.getDataID() !== deletedClientId
+        );
+
+        root.setLinkedRecords(updatedClients, "clients");
+      },
+    });
+  };
 
   return (
     <tr>
@@ -40,7 +57,7 @@ export default function ClientRow({ clientRef }: ClientRowProps) {
         <button
           className="btn btn-danger btn-sm"
           style={{ width: "38px" }}
-          onClick={() => {}}
+          onClick={onClick}
           aria-label="Delete client"
         >
           <FaTrash />
